@@ -1,0 +1,47 @@
+<mat-card>
+<div fxFlex class = "" fxLayout = "column" fxLayoutAlign = "space-between center">
+<label id="example-radio-group-label">Select audio type.</label>
+<mat-radio-group aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="audioTypeSelected" (change)="resetAudioOptions($event)">
+    <mat-radio-button [value]="1">Standard Audio</mat-radio-button>
+    <mat-radio-button [value]="2">Non-Standard Audio</mat-radio-button>
+  </mat-radio-group>
+
+    
+      <div fxFlex class = "" fxLayout = "row" fxLayoutAlign = "space-between center">
+        <mat-form-field [style.width.px] = 200 >
+        <input matInput required="true" placeholder="Enter your UID" [value]="uid" (input)='updateUid(($event))'/>
+        </mat-form-field>
+        <br>
+        <mat-form-field [style.width.px] = 400 >
+        <input matInput required="true" placeholder="Enter your Name" [value]="name" (input)='updateName(($event))'/>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color = "primary" (click)= 'onSubmit()' >Submit</button>
+      </div>
+      <br>
+      <br>
+      <div>
+        <button mat-raised-button color = "primary" *ngIf="!isAudioRecording && !audioBlobUrl && displayAudioRecording" (click)="startAudioRecording()">Start Audio Recording
+          <!-- <mat-icon>record_voice_over</mat-icon> -->
+        </button>
+        <button mat-raised-button color = "primary" *ngIf="isAudioRecording && !audioBlobUrl" (click)="stopAudioRecording()">Stop Audio Recording
+          <!-- <mat-icon>stop</mat-icon> -->
+        </button>
+        <button mat-raised-button color = "primary"  *ngIf="!isAudioRecording && audioBlobUrl" (click)="clearAudioRecordedData()">Clear Audio Recording
+          <!-- <mat-icon>clear</mat-icon> -->
+        </button>
+        <button mat-raised-button color = "primary"  *ngIf="!isAudioRecording && audioBlobUrl" (click)="downloadAudioRecordedData()">Download Audio Recording
+          <!-- <mat-icon>cloud_download</mat-icon> -->
+        </button>
+        <br>
+        <br>
+        <div id="audioTimer" *ngIf="isAudioRecording && !audioBlobUrl"> {{ audioRecordedTime }} </div>
+        <audio  *ngIf="!isAudioRecording && audioBlobUrl"  controls>
+          <source [src]="audioBlobUrl" type="audio/mp3">
+        </audio>
+      </div>
+    
+  </div>
+</mat-card>

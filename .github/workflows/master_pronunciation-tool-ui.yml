@@ -51,6 +51,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'pronunciation-tool-UI'
-          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_13D9DD1158FD40B6963F03CB6B13A671 }}
-          package: .
+          package: ./dist/pronunciationtool

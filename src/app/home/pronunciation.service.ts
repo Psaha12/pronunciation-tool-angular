@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 })
 export class PronunciationService {
 
-  private PRONUNCIATION_API = "https://pronunciation-tool-backend.azurewebsites.net/";
+  private PRONUNCIATION_API = "https://pronunciation-tool-backend.azurewebsites.net";
   
   constructor(private httpClient: HttpClient) { }
 
